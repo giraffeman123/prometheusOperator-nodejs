@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: monitor-app
+  namespace: default
+  annotations:
+    alpha.monitoring.coreos.com/non-namespaced: "true"  
+  labels:
+    app: monitor-app
+spec:
+  selector:
+    app: monitor-app
+  ports:
+  - name: web
+    port: 8080

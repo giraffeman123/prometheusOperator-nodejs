@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: monitor-app
+  namespace: default
+  labels:
+    team: frontend
+spec:
+  jobLabel: monitor-app
+  selector:
+    matchLabels:
+      app: monitor-app
+  namespaceSelector:
+    matchNames:
+    - default      
+  endpoints:
+  - port: web
+    interval: 15s

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:  
+  name: monitor-app  
+  namespace: default
+spec:
+  ingressClassName: nginx-default
+  rules:
+  - host: k8-cluster.localtest.me
+    http:
+      paths:
+      - backend:
+          service:
+            name: monitor-app
+            port:
+              number: 8080
+        path: /monitor-app
+        pathType: Prefix
+  tls:
+  - hosts:
+    - k8-cluster.localtest.me
+status:
+  loadBalancer:
+    ingress:
+    - ip: 127.0.0.1
